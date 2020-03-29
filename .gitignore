@@ -314,4 +314,4 @@ paket-files/
 __pycache__/
 *.pyc
 
-
+cmake-build-debug/
