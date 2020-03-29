@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/zhengyuanhao/Documents/Berry3D/include/scene.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/include/scene.cpp.o"
   "/Users/zhengyuanhao/Documents/Berry3D/main.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/main.cpp.o"
   "/Users/zhengyuanhao/Documents/Berry3D/src/Berry3D.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/src/Berry3D.cpp.o"
   "/Users/zhengyuanhao/Documents/Berry3D/src/camera.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/src/camera.cpp.o"
+  "/Users/zhengyuanhao/Documents/Berry3D/src/item.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/src/item.cpp.o"
   "/Users/zhengyuanhao/Documents/Berry3D/src/math.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/src/math.cpp.o"
+  "/Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp" "/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles/Berry3D.dir/src/scene.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

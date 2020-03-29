@@ -86,13 +86,19 @@
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/camera.h">
 			<Option target="Berry3D"/>
 		</Unit>
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/cube.h">
+			<Option target="Berry3D"/>
+		</Unit>
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/item.h">
+			<Option target="Berry3D"/>
+		</Unit>
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/math.h">
 			<Option target="Berry3D"/>
 		</Unit>
-		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/scene.cpp">
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/scene.h">
 			<Option target="Berry3D"/>
 		</Unit>
-		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/scene.h">
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/include/timestamp.h">
 			<Option target="Berry3D"/>
 		</Unit>
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/main.cpp">
@@ -104,7 +110,13 @@
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/src/camera.cpp">
 			<Option target="Berry3D"/>
 		</Unit>
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/src/item.cpp">
+			<Option target="Berry3D"/>
+		</Unit>
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/src/math.cpp">
+			<Option target="Berry3D"/>
+		</Unit>
+		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp">
 			<Option target="Berry3D"/>
 		</Unit>
 		<Unit filename="/Users/zhengyuanhao/Documents/Berry3D/CMakeLists.txt">

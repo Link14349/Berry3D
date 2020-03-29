@@ -123,33 +123,6 @@ Berry3D/fast:
 	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/build
 .PHONY : Berry3D/fast
 
-include/scene.o: include/scene.cpp.o
-
-.PHONY : include/scene.o
-
-# target to build an object file
-include/scene.cpp.o:
-	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/include/scene.cpp.o
-.PHONY : include/scene.cpp.o
-
-include/scene.i: include/scene.cpp.i
-
-.PHONY : include/scene.i
-
-# target to preprocess a source file
-include/scene.cpp.i:
-	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/include/scene.cpp.i
-.PHONY : include/scene.cpp.i
-
-include/scene.s: include/scene.cpp.s
-
-.PHONY : include/scene.s
-
-# target to generate assembly for a file
-include/scene.cpp.s:
-	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/include/scene.cpp.s
-.PHONY : include/scene.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -231,6 +204,33 @@ src/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
 
+src/item.o: src/item.cpp.o
+
+.PHONY : src/item.o
+
+# target to build an object file
+src/item.cpp.o:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/item.cpp.o
+.PHONY : src/item.cpp.o
+
+src/item.i: src/item.cpp.i
+
+.PHONY : src/item.i
+
+# target to preprocess a source file
+src/item.cpp.i:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/item.cpp.i
+.PHONY : src/item.cpp.i
+
+src/item.s: src/item.cpp.s
+
+.PHONY : src/item.s
+
+# target to generate assembly for a file
+src/item.cpp.s:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/item.cpp.s
+.PHONY : src/item.cpp.s
+
 src/math.o: src/math.cpp.o
 
 .PHONY : src/math.o
@@ -258,6 +258,33 @@ src/math.cpp.s:
 	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/math.cpp.s
 .PHONY : src/math.cpp.s
 
+src/scene.o: src/scene.cpp.o
+
+.PHONY : src/scene.o
+
+# target to build an object file
+src/scene.cpp.o:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/scene.cpp.o
+.PHONY : src/scene.cpp.o
+
+src/scene.i: src/scene.cpp.i
+
+.PHONY : src/scene.i
+
+# target to preprocess a source file
+src/scene.cpp.i:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/scene.cpp.i
+.PHONY : src/scene.cpp.i
+
+src/scene.s: src/scene.cpp.s
+
+.PHONY : src/scene.s
+
+# target to generate assembly for a file
+src/scene.cpp.s:
+	$(MAKE) -f CMakeFiles/Berry3D.dir/build.make CMakeFiles/Berry3D.dir/src/scene.cpp.s
+.PHONY : src/scene.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -267,9 +294,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Berry3D"
-	@echo "... include/scene.o"
-	@echo "... include/scene.i"
-	@echo "... include/scene.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -279,9 +303,15 @@ help:
 	@echo "... src/camera.o"
 	@echo "... src/camera.i"
 	@echo "... src/camera.s"
+	@echo "... src/item.o"
+	@echo "... src/item.i"
+	@echo "... src/item.s"
 	@echo "... src/math.o"
 	@echo "... src/math.i"
 	@echo "... src/math.s"
+	@echo "... src/scene.o"
+	@echo "... src/scene.i"
+	@echo "... src/scene.s"
 .PHONY : help
 
 

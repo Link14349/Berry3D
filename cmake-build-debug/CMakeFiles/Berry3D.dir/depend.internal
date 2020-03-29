@@ -3,14 +3,45 @@
 
 CMakeFiles/Berry3D.dir/main.cpp.o
  /Users/zhengyuanhao/Documents/Berry3D/include/Berry3D.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/camera.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/cube.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/item.h
  /Users/zhengyuanhao/Documents/Berry3D/include/math.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/scene.h
  /Users/zhengyuanhao/Documents/Berry3D/main.cpp
  /usr/local/include/GLFW/glfw3.h
 CMakeFiles/Berry3D.dir/src/Berry3D.cpp.o
  /Users/zhengyuanhao/Documents/Berry3D/include/Berry3D.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/camera.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/cube.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/item.h
  /Users/zhengyuanhao/Documents/Berry3D/include/math.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/scene.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/timestamp.h
  /Users/zhengyuanhao/Documents/Berry3D/src/Berry3D.cpp
  /usr/local/include/GLFW/glfw3.h
+CMakeFiles/Berry3D.dir/src/camera.cpp.o
+ /Users/zhengyuanhao/Documents/Berry3D/include/Berry3D.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/camera.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/cube.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/item.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/math.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/scene.h
+ /Users/zhengyuanhao/Documents/Berry3D/src/camera.cpp
+ /usr/local/include/GLFW/glfw3.h
+CMakeFiles/Berry3D.dir/src/item.cpp.o
+ /Users/zhengyuanhao/Documents/Berry3D/include/item.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/math.h
+ /Users/zhengyuanhao/Documents/Berry3D/src/item.cpp
 CMakeFiles/Berry3D.dir/src/math.cpp.o
  /Users/zhengyuanhao/Documents/Berry3D/include/math.h
  /Users/zhengyuanhao/Documents/Berry3D/src/math.cpp
+CMakeFiles/Berry3D.dir/src/scene.cpp.o
+ /Users/zhengyuanhao/Documents/Berry3D/include/Berry3D.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/camera.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/cube.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/item.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/math.h
+ /Users/zhengyuanhao/Documents/Berry3D/include/scene.h
+ /Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp
+ /usr/local/include/GLFW/glfw3.h

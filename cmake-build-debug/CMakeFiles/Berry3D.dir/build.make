@@ -109,18 +109,31 @@ CMakeFiles/Berry3D.dir/src/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Berry3D.dir/src/camera.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhengyuanhao/Documents/Berry3D/src/camera.cpp -o CMakeFiles/Berry3D.dir/src/camera.cpp.s
 
-CMakeFiles/Berry3D.dir/include/scene.cpp.o: CMakeFiles/Berry3D.dir/flags.make
-CMakeFiles/Berry3D.dir/include/scene.cpp.o: ../include/scene.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Berry3D.dir/include/scene.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Berry3D.dir/include/scene.cpp.o -c /Users/zhengyuanhao/Documents/Berry3D/include/scene.cpp
+CMakeFiles/Berry3D.dir/src/scene.cpp.o: CMakeFiles/Berry3D.dir/flags.make
+CMakeFiles/Berry3D.dir/src/scene.cpp.o: ../src/scene.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Berry3D.dir/src/scene.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Berry3D.dir/src/scene.cpp.o -c /Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp
 
-CMakeFiles/Berry3D.dir/include/scene.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Berry3D.dir/include/scene.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhengyuanhao/Documents/Berry3D/include/scene.cpp > CMakeFiles/Berry3D.dir/include/scene.cpp.i
+CMakeFiles/Berry3D.dir/src/scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Berry3D.dir/src/scene.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp > CMakeFiles/Berry3D.dir/src/scene.cpp.i
 
-CMakeFiles/Berry3D.dir/include/scene.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Berry3D.dir/include/scene.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhengyuanhao/Documents/Berry3D/include/scene.cpp -o CMakeFiles/Berry3D.dir/include/scene.cpp.s
+CMakeFiles/Berry3D.dir/src/scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Berry3D.dir/src/scene.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhengyuanhao/Documents/Berry3D/src/scene.cpp -o CMakeFiles/Berry3D.dir/src/scene.cpp.s
+
+CMakeFiles/Berry3D.dir/src/item.cpp.o: CMakeFiles/Berry3D.dir/flags.make
+CMakeFiles/Berry3D.dir/src/item.cpp.o: ../src/item.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Berry3D.dir/src/item.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Berry3D.dir/src/item.cpp.o -c /Users/zhengyuanhao/Documents/Berry3D/src/item.cpp
+
+CMakeFiles/Berry3D.dir/src/item.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Berry3D.dir/src/item.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/zhengyuanhao/Documents/Berry3D/src/item.cpp > CMakeFiles/Berry3D.dir/src/item.cpp.i
+
+CMakeFiles/Berry3D.dir/src/item.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Berry3D.dir/src/item.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/zhengyuanhao/Documents/Berry3D/src/item.cpp -o CMakeFiles/Berry3D.dir/src/item.cpp.s
 
 # Object files for target Berry3D
 Berry3D_OBJECTS = \
@@ -128,7 +141,8 @@ Berry3D_OBJECTS = \
 "CMakeFiles/Berry3D.dir/src/math.cpp.o" \
 "CMakeFiles/Berry3D.dir/src/Berry3D.cpp.o" \
 "CMakeFiles/Berry3D.dir/src/camera.cpp.o" \
-"CMakeFiles/Berry3D.dir/include/scene.cpp.o"
+"CMakeFiles/Berry3D.dir/src/scene.cpp.o" \
+"CMakeFiles/Berry3D.dir/src/item.cpp.o"
 
 # External object files for target Berry3D
 Berry3D_EXTERNAL_OBJECTS =
@@ -137,11 +151,12 @@ Berry3D: CMakeFiles/Berry3D.dir/main.cpp.o
 Berry3D: CMakeFiles/Berry3D.dir/src/math.cpp.o
 Berry3D: CMakeFiles/Berry3D.dir/src/Berry3D.cpp.o
 Berry3D: CMakeFiles/Berry3D.dir/src/camera.cpp.o
-Berry3D: CMakeFiles/Berry3D.dir/include/scene.cpp.o
+Berry3D: CMakeFiles/Berry3D.dir/src/scene.cpp.o
+Berry3D: CMakeFiles/Berry3D.dir/src/item.cpp.o
 Berry3D: CMakeFiles/Berry3D.dir/build.make
 Berry3D: /usr/local/lib/libglfw3.a
 Berry3D: CMakeFiles/Berry3D.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Berry3D"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhengyuanhao/Documents/Berry3D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Berry3D"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Berry3D.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
