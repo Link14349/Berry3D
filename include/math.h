@@ -44,7 +44,7 @@ namespace Berry3D {
         Vector3 operator-() const { return Vector3(-x, -y, -z); }
         // 点积
         float operator*(const Vector3& vector3) const {
-            return MATH_VEC_OP(x, *) + MATH_VEC_OP(y, *) + MATH_VEC_OP(y, *);
+            return MATH_VEC_OP(x, *) + MATH_VEC_OP(y, *) + MATH_VEC_OP(z, *);
         }
         // 向量积
         Vector3 operator%(const Vector3& vector3) const { return Vector3(MATH_VEC_OP(x, *), MATH_VEC_OP(y, *), MATH_VEC_OP(y, *)); }

@@ -9,6 +9,7 @@ void Berry3D::Camera::render() {
     auto tb = scene->tb;
     auto half_alpha = scene->half_alpha;
     auto half_beta = scene->half_beta;
+    const auto invTan_halfPI_sub_halfbeta = 1 / tan(PI * 0.5f - half_beta);
     static Plane3D screenPlane(Vector3(0, 0, 1), Vector3(0, 0, NEAR_Z));
     BERRY3D_VEC3_ROTATE_ARG_DEF
     Vector3::rotateArgCal(-rotation, BERRY3D_VEC3_ROTATE_ARG_PASS);
@@ -20,11 +21,7 @@ void Berry3D::Camera::render() {
 #define transToCamPositionOrig(NAME, itemWorldPoint) auto NAME##_cam = ((itemWorldPoint) - (position)).rotate(BERRY3D_VEC3_ROTATE_ARG_PASS);
         transToCamPositionOrig(itemPosition, item->position);
         if (itemPosition_cam.z + item->maxRadius <= NEAR_Z || itemPosition_cam.z + item->maxRadius > FAR_Z) continue;// 近裁面和远裁面的判断
-        if (
-                (abs(itemPosition_cam.x) - item->maxRadius > itemPosition_cam.z / tan(PI * 0.5f - half_beta)) ||
-                (abs(itemPosition_cam.y) - item->maxRadius > itemPosition_cam.z / tan(PI * 0.5f - half_beta))
-                )
-            continue;
+        if ((abs(itemPosition_cam.x) - item->maxRadius > tan(half_alpha) * (itemPosition_cam.z + item->maxRadius * 2)) || (abs(itemPosition_cam.y) - item->maxRadius > tan(half_beta) * (itemPosition_cam.z + item->maxRadius * 2))) continue;
         auto** transedPoints = new Vector3*[points.size()];
         for (size_t i = 0; i < points.size(); i++) transedPoints[i] = nullptr;
         struct CamPlane {
@@ -36,10 +33,12 @@ void Berry3D::Camera::render() {
         for (auto& plane : planes) {
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *item->points[plane->points[ID]], item->position)
             getPoint(0)
-//            if ((plane->n->rotate(BERRY3D_VEC3_ROTATE_ARG_PASS) * transedPoints[plane->points[0]]->operator-().norm()) < 0) continue;// 背面
+            // 0~1
+            if (plane->n->operator*(sight) >= 0)
+                continue;// 背面
             getPoint(1)
             getPoint(2)
-#define mapToScreen(ID) if (plane_.points[ID]->z != INFINITY) { if (plane_.points[ID]->z < NEAR_Z) continue; plane_.points[ID]->mappingTo(ta, tb); }
+#define mapToScreen(ID) if (plane_.points[ID]->z != INFINITY) { /*if (plane_.points[ID]->z < NEAR_Z) continue;*/ plane_.points[ID]->mappingTo(ta, tb); }
             CamPlane plane_(transedPoints[plane->points[0]], transedPoints[plane->points[1]], transedPoints[plane->points[2]]);
             mapToScreen(0)
             mapToScreen(1)

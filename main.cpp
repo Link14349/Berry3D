@@ -35,21 +35,21 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
             camera.left(-1);
             break;
         case GLFW_KEY_UP:
-            camera.rotation.x -= PI / 90;
+            camera.rotate(Berry3D::Vector3(-PI / 90, 0, 0));
             break;
         case GLFW_KEY_DOWN:
-            camera.rotation.x += PI / 90;
+            camera.rotate(Berry3D::Vector3(PI / 90, 0, 0));
             break;
         case GLFW_KEY_LEFT:
-            camera.rotation.y += PI / 90;
+            camera.rotate(Berry3D::Vector3(0, PI / 90, 0));
             break;
         case GLFW_KEY_RIGHT:
-            camera.rotation.y -= PI / 90;
+            camera.rotate(Berry3D::Vector3(0, -PI / 90, 0));
             break;
     }
 }
 
-#define LEN 10
+#define LEN 30
 
 int main() {
     Berry3D::Cube* cubes[LEN * LEN * LEN];
@@ -65,8 +65,13 @@ int main() {
             }
         }
     }
+//    Berry3D::Cube cube;
+//    scene.push(&cube);
     berry3D.use(&scene);
     berry3D.setKeyEvent(callback);
+//    berry3D.setAfterRendering([](Berry3D::Scene* scene) {
+//        scene->items.front()->rotate(Berry3D::Vector3(PI / 180, PI / 180, PI / 180));
+//    });
     camera.position.z = -LEN;
     berry3D.render();
     for (size_t i = 0; i < LEN * LEN * LEN; i++) delete cubes[i];
