@@ -21,7 +21,7 @@ void Berry3D::Camera::render() {
 #define transToCamPositionOrig(NAME, itemWorldPoint) auto NAME##_cam = ((itemWorldPoint) - (position)).rotate(BERRY3D_VEC3_ROTATE_ARG_PASS);
         transToCamPositionOrig(itemPosition, item->position);
         if (itemPosition_cam.z + item->maxRadius <= NEAR_Z || itemPosition_cam.z + item->maxRadius > FAR_Z) continue;// 近裁面和远裁面的判断
-        if ((abs(itemPosition_cam.x) - item->maxRadius > tan(half_alpha) * (itemPosition_cam.z + item->maxRadius * 2)) || (abs(itemPosition_cam.y) - item->maxRadius > tan(half_beta) * (itemPosition_cam.z + item->maxRadius * 2))) continue;
+        if ((abs(itemPosition_cam.x) - item->maxRadius > tan(half_alpha) * (itemPosition_cam.z + item->maxRadius)) || (abs(itemPosition_cam.y) - item->maxRadius > tan(half_beta) * (itemPosition_cam.z + item->maxRadius))) continue;
         auto** transedPoints = new Vector3*[points.size()];
         for (size_t i = 0; i < points.size(); i++) transedPoints[i] = nullptr;
         struct CamPlane {
