@@ -36,11 +36,10 @@ void Berry3D::Camera::render() {
             Vector3* points[3];
         };
         for (auto& plane : planes) {
+            if (plane->n->operator*(position - *points[plane->points[0]]) <= 0)
+                continue;// 背面
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *item->points[plane->points[ID]], item->position)
             getPoint(0)
-            // 0~1
-            if (plane->n->operator*(sight) >= 0)
-                continue;// 背面
             getPoint(1)
             getPoint(2)
 #define mapToScreen(ID) if (plane_.points[ID]->z != INFINITY) { /*if (plane_.points[ID]->z < NEAR_Z) continue;*/ plane_.points[ID]->mappingTo(ta, tb); }

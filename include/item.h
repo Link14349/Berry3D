@@ -27,7 +27,6 @@ namespace Berry3D {
         void down(float step) { up(-step); }
         virtual void rotate(const Vector3& r) { rotation += r; }
         Vector3 position;
-    protected:
         Vector3 rotation;
     };
 

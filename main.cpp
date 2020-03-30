@@ -1,19 +1,4 @@
 #include <iostream>
-
-/*size_t mem_count = 0;
-
-void* operator new(size_t size) {
-    mem_count++;
-    auto p = malloc(size);
-    std::clog << "n" << p << "\n";
-    return p;
-}
-void operator delete(void* p) {
-    mem_count++;
-    std::clog << "d" << p << "\n";
-    free(p);
-}*/
-
 #include "include/Berry3D.h"
 
 Berry3D::Berry3D berry3D("Berry3D");
@@ -49,7 +34,7 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
     }
 }
 
-#define LEN 20
+#define LEN 1
 
 int main() {
     Berry3D::Cube* cubes[LEN * LEN * LEN];
@@ -69,9 +54,9 @@ int main() {
 //    scene.push(&cube);
     berry3D.use(&scene);
     berry3D.setKeyEvent(callback);
-//    berry3D.setAfterRendering([](Berry3D::Scene* scene) {
-//        scene->items.front()->rotate(Berry3D::Vector3(PI / 180, PI / 180, PI / 180));
-//    });
+    berry3D.setAfterRendering([](Berry3D::Scene* scene) {
+        scene->items.front()->rotate(Berry3D::Vector3(PI / 180, PI / 180, PI / 180));
+    });
     camera.position.z = -LEN;
     berry3D.render();
     for (size_t i = 0; i < LEN * LEN * LEN; i++) delete cubes[i];
