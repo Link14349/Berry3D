@@ -14,6 +14,8 @@ void Berry3D::Camera::render() {
     BERRY3D_VEC3_ROTATE_ARG_DEF
     Vector3::rotateArgCal(-rotation, BERRY3D_VEC3_ROTATE_ARG_PASS);
     auto& items = scene->items;
+    Vector3** transedPoints = nullptr;
+    size_t transedPointsSize = 0;
     for (auto& item : items) {
         auto& points = item->points;
         auto& planes = item->planes;
@@ -22,7 +24,10 @@ void Berry3D::Camera::render() {
         transToCamPositionOrig(itemPosition, item->position);
         if (itemPosition_cam.z + item->maxRadius <= NEAR_Z || itemPosition_cam.z + item->maxRadius > FAR_Z) continue;// 近裁面和远裁面的判断
         if ((abs(itemPosition_cam.x) - item->maxRadius > tan(half_alpha) * (itemPosition_cam.z + item->maxRadius)) || (abs(itemPosition_cam.y) - item->maxRadius > tan(half_beta) * (itemPosition_cam.z + item->maxRadius))) continue;
-        auto** transedPoints = new Vector3*[points.size()];
+        if (transedPointsSize < points.size()) {
+            delete[] transedPoints;
+            transedPoints = new Vector3*[transedPointsSize = points.size()];
+        }
         for (size_t i = 0; i < points.size(); i++) transedPoints[i] = nullptr;
         struct CamPlane {
             CamPlane(Vector3* p0, Vector3* p1, Vector3* p2) { points[0] = p0; points[1] = p1; points[2] = p2; }
@@ -50,6 +55,6 @@ void Berry3D::Camera::render() {
         }
         // 最后清理内存
         for (size_t i = 0; i < points.size(); i++) delete transedPoints[i];
-        delete[] transedPoints;
     }
+    delete[] transedPoints;
 }

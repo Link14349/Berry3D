@@ -49,7 +49,7 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
     }
 }
 
-#define LEN 30
+#define LEN 20
 
 int main() {
     Berry3D::Cube* cubes[LEN * LEN * LEN];
