@@ -42,3 +42,5 @@ namespace Berry3D {
 #include "item.h"
 #include "camera.h"
 #include "cube.h"
+#include "loader.h"
+#include "objLoader.h"

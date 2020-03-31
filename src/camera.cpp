@@ -42,7 +42,7 @@ void Berry3D::Camera::render() {
             getPoint(0)
             getPoint(1)
             getPoint(2)
-#define mapToScreen(ID) if (plane_.points[ID]->z != INFINITY) { /*if (plane_.points[ID]->z < NEAR_Z) continue;*/ plane_.points[ID]->mappingTo(ta, tb); }
+#define mapToScreen(ID) if (plane_.points[ID]->z != INFINITY) { if (plane_.points[ID]->z < NEAR_Z) continue; plane_.points[ID]->mappingTo(ta, tb); }
             CamPlane plane_(transedPoints[plane->points[0]], transedPoints[plane->points[1]], transedPoints[plane->points[2]]);
             mapToScreen(0)
             mapToScreen(1)

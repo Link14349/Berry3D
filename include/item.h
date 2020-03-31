@@ -32,6 +32,8 @@ namespace Berry3D {
 
     class Entity : public Item {
         friend class Camera;
+        friend class Loader;
+        friend class ObjLoader;
     public:
         virtual ~Entity() {
             for (auto& plane : planes) delete plane;
