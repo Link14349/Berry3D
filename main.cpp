@@ -41,8 +41,9 @@ int main() {
     berry3D.setKeyEvent(callback);
     Berry3D::ObjLoader loader("link.obj");
     auto obj = loader.load();
-    camera.position = -5;
-    obj->rotate(Berry3D::Vector3(PI, PI / 2, 0));
+    obj->scale(2);
+    camera.position.z = -10;
+    obj->rotate(Berry3D::Vector3(PI, 0, 0));
     scene.push(obj);
     berry3D.render();
     delete obj;

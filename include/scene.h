@@ -9,8 +9,10 @@
 #include "camera.h"
 
 namespace Berry3D {
+    class Berry3D;
     class Scene {
         friend class Camera;
+        friend class Berry3D;
     public:
         Scene() : camera(nullptr) { setAlpha(PI * 0.66); setBeta(PI * 0.66); }
         void use(Camera* cam) { camera = cam; cam->scene = this; }
@@ -23,6 +25,7 @@ namespace Berry3D {
         float ta, tb;
         float half_alpha, half_beta;
         Camera* camera;
+        Berry3D* berry3D;
     };
 }
 

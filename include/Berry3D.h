@@ -4,6 +4,7 @@
 #include <string>
 #include <GLFW/glfw3.h>
 #include "math.h"
+#include "scene.h"
 
 namespace Berry3D {
     class Scene;
@@ -20,12 +21,17 @@ namespace Berry3D {
             }
         }
         int render();
+        float width() { return w; }
+        float height() { return h; }
         void setKeyEvent(void (*cb)(GLFWwindow*, int, int, int, int)) { glfwSetKeyCallback(win, cb); }
         void setAfterRendering(void (*ar)(Scene*)) { afterRendering = ar; }
-        void use(Scene* s) { scene = s; }
+        void use(Scene* s);
 #define DRAW_LINE(fx, fy, tx ,ty) glBegin(GL_LINES); \
         glVertex2f(fx, fy); \
         glVertex2f(tx, ty); \
+        glEnd();
+#define DRAW_POINT(fx, fy) glBegin(GL_POINTS); \
+        glVertex2f(fx, fy); \
         glEnd();
     private:
         int w, h;

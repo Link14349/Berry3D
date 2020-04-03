@@ -1,6 +1,7 @@
 #include <cstdio>
 #include "../include/Berry3D.h"
 #include "../include/timestamp.h"
+#include "../include/scene.h"
 
 int Berry3D::Berry3D::render() {
     glfwMakeContextCurrent(win);
@@ -19,4 +20,9 @@ int Berry3D::Berry3D::render() {
     }
     glfwTerminate();
     return 0;
+}
+
+void Berry3D::Berry3D::use(Scene *s) {
+    scene = s;
+    scene->berry3D = this;
 }

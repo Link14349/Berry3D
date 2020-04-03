@@ -59,6 +59,7 @@ namespace Berry3D {
             }
             maxRadius = sqrt(max2);
         }
+        float radius() { return maxRadius; }
         void moveOrigin(const Vector3& offset) {
             for (auto& point : points) point->operator-=(offset);
         }
