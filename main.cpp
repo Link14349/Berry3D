@@ -44,6 +44,10 @@ int main() {
     obj->scale(2);
     camera.position.z = -10;
     obj->rotate(Berry3D::Vector3(PI, 0, 0));
+    obj->position.y = 10;
+    berry3D.setAfterRendering([](Berry3D::Scene* scene) {
+        scene->items.front()->rotate(Berry3D::Vector3(0, PI / 180, 0));
+    });
     scene.push(obj);
     berry3D.render();
     delete obj;
