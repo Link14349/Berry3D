@@ -25,23 +25,23 @@ void Berry3D::Camera::render() {
 #define transToCamPositionOrig(NAME, itemWorldPoint) auto NAME##_cam = ((itemWorldPoint) - (position)).rotate(BERRY3D_VEC3_ROTATE_ARG_PASS);
         transToCamPositionOrig(itemPosition, item->position);
         if (itemPosition_cam.z + item->maxRadius <= NEAR_Z || itemPosition_cam.z + item->maxRadius > FAR_Z) continue;// 近裁面和远裁面的判断
-        if ((abs(itemPosition_cam.x) - item->maxRadius > tan(half_alpha) * (itemPosition_cam.z + item->maxRadius)) || (abs(itemPosition_cam.y) - item->maxRadius > tan(half_beta) * (itemPosition_cam.z + item->maxRadius))) continue;
+        if ((abs(itemPosition_cam.x) - item->maxRadius > ta * (itemPosition_cam.z + item->maxRadius)) || (abs(itemPosition_cam.y) - item->maxRadius > tb * (itemPosition_cam.z + item->maxRadius)))
+            continue;
         if (transedPointsSize < points.size()) {
             delete[] transedPoints;
             transedPoints = new Vector3*[transedPointsSize = points.size()];
         }
         for (size_t i = 0; i < points.size(); i++) transedPoints[i] = nullptr;
         for (auto& plane : planes) {
-            if (plane->n->operator*(position - *points[plane->points[0]]) <= 0)
-                continue;// 背面
+            if (plane->n->operator*(position - *points[plane->points[0]] - item->position) < 0) continue;
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *points[plane->points[ID]], item->position)
 #define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; transedPoints[plane->points[ID]]->mappingTo(ta, tb); }
-            if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * tb)) <= MIN_LEN_RATIO) {
-                getPoint(0)
-                mapToScreen(0)
-                DRAW_POINT(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
-                continue;
-            }
+//            if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * tb)) <= MIN_LEN_RATIO) {
+//                getPoint(0)
+//                mapToScreen(0)
+//                DRAW_POINT(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
+//                continue;
+//            }
             getPoint(0)
             getPoint(1)
             getPoint(2)

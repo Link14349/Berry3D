@@ -21,16 +21,20 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
             camera.left(-1);
             break;
         case GLFW_KEY_UP:
-            camera.rotate(Berry3D::Vector3(-PI / 90, 0, 0));
+            camera.rotate(Berry3D::Vector3(PI / 90, 0, 0));
             break;
         case GLFW_KEY_DOWN:
-            camera.rotate(Berry3D::Vector3(PI / 90, 0, 0));
+            camera.rotate(Berry3D::Vector3(-PI / 90, 0, 0));
             break;
         case GLFW_KEY_LEFT:
             camera.rotate(Berry3D::Vector3(0, PI / 90, 0));
             break;
         case GLFW_KEY_RIGHT:
             camera.rotate(Berry3D::Vector3(0, -PI / 90, 0));
+            break;
+        case GLFW_KEY_I:
+            std::cout << camera.position.x << ", " << camera.position.y << ", " << camera.position.z << std::endl;
+            std::cout << camera.rotation.x << ", " << camera.rotation.y << ", " << camera.rotation.z << std::endl;
             break;
     }
 }
@@ -39,17 +43,27 @@ int main() {
     scene.use(&camera);
     berry3D.use(&scene);
     berry3D.setKeyEvent(callback);
-    Berry3D::ObjLoader loader("link.obj");
-    auto obj = loader.load();
-    obj->scale(2);
-    camera.position.z = -10;
-    obj->rotate(Berry3D::Vector3(PI, 0, 0));
-    obj->position.y = 10;
-    berry3D.setAfterRendering([](Berry3D::Scene* scene) {
-        scene->items.front()->rotate(Berry3D::Vector3(0, PI / 180, 0));
-    });
-    scene.push(obj);
+#define LEN 30
+//    camera.rotation.x = -0.174533;
+//    camera.rotation.y = 0;
+//    camera.rotation.z = 0;
+//    camera.position.x = 4;
+//    camera.position.y = 0.623607;
+//    camera.position.z = -6.00845;
+    camera.position.z = -2.69090748;
+    auto cube = new Berry3D::Cube(1.69090748, 1.69090748, 1.69090748);
+    scene.push(cube);
+//    camera.position.z = -2 * LEN;
+//    for (int i = 0; i < LEN; i++)
+//        for (int j = 0; j < LEN; j++)
+//            for (int k = 0; k < LEN; k++) {
+//                auto cube = new Berry3D::Cube;
+//                cube->position.x = i * 2 - LEN;
+//                cube->position.y = j * 2 - LEN;
+//                cube->position.z = k * 2 - LEN;
+//                scene.push(cube);
+//            }
     berry3D.render();
-    delete obj;
+    scene.autoClear();
     return 0;
 }

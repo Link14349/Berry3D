@@ -20,6 +20,9 @@ namespace Berry3D {
         void setAlpha(float a) { half_alpha = a * .5f; ta = tan(half_alpha); }
         void setBeta(float b) { half_beta = b * .5f; tb = tan(half_beta); }
         void push(Entity* item) { items.push_back(item); }
+        void autoClear() {
+            for (auto& entity : items) delete entity;
+        }
         std::list<Entity*> items;
     private:
         float ta, tb;

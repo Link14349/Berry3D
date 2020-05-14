@@ -68,8 +68,8 @@ namespace Berry3D {
             return Vector3(x * invLen, y * invLen, z * invLen);
         }
         void mappingTo(float ta, float tb) {
-            x /= (2 * z * ta);
-            y = -y / (2 * z * tb);
+            x /= z * ta;
+            y /= z * tb;
             z = INFINITY;
         }
         bool operator==(const Vector3& vector3) const { return MATH_VEC_OP(x, ==) && MATH_VEC_OP(y, ==) && MATH_VEC_OP(z, ==); }
