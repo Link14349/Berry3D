@@ -13,8 +13,11 @@ namespace Berry3D {
             rotation += r;
         }
         void render();
+        ~Camera() { delete[] transedPoints; }
     protected:
         Scene* scene;
+        size_t transedPointsSize = 0;
+        Vector3** transedPoints = nullptr;
     };
     class FreeCamera : public Camera {
         friend class Scene;

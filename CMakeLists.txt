@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 project(Berry3D)
+set(CMAKE_CXX_FLAGS "-O3")
 
 set(CMAKE_CXX_STANDARD 17)
 set(HEADERS /usr/local/include)

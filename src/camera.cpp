@@ -15,8 +15,6 @@ void Berry3D::Camera::render() {
     BERRY3D_VEC3_ROTATE_ARG_DEF
     Vector3::rotateArgCal(-rotation, BERRY3D_VEC3_ROTATE_ARG_PASS);
     auto& items = scene->items;
-    Vector3** transedPoints = nullptr;
-    size_t transedPointsSize = 0;
     const float MIN_LEN_RATIO = 1 / SIZE;// 1px
     for (auto& item : items) {
         auto& points = item->points;
@@ -24,6 +22,11 @@ void Berry3D::Camera::render() {
 #define transToCamPosition(NAME, point, itemWorldPoint) NAME = ((point) + (itemWorldPoint) - (position)).rotate_new(BERRY3D_VEC3_ROTATE_ARG_PASS);
 #define transToCamPositionOrig(NAME, itemWorldPoint) auto NAME##_cam = ((itemWorldPoint) - (position)).rotate(BERRY3D_VEC3_ROTATE_ARG_PASS);
         transToCamPositionOrig(itemPosition, item->position);
+        if (item->radius() / (itemPosition_cam.z * ta) <= MIN_LEN_RATIO) {
+            itemPosition_cam.mappingTo(ta, tb);
+            DRAW_POINT(itemPosition_cam.x, itemPosition_cam.y)
+            continue;
+        }
         if (itemPosition_cam.z + item->maxRadius <= NEAR_Z || itemPosition_cam.z + item->maxRadius > FAR_Z) continue;// 近裁面和远裁面的判断
         if ((abs(itemPosition_cam.x) - item->maxRadius > ta * (itemPosition_cam.z + item->maxRadius)) || (abs(itemPosition_cam.y) - item->maxRadius > tb * (itemPosition_cam.z + item->maxRadius)))
             continue;
@@ -36,12 +39,12 @@ void Berry3D::Camera::render() {
             if (plane->n->operator*(position - *points[plane->points[0]] - item->position) < 0) continue;
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *points[plane->points[ID]], item->position)
 #define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; transedPoints[plane->points[ID]]->mappingTo(ta, tb); }
-//            if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * tb)) <= MIN_LEN_RATIO) {
-//                getPoint(0)
-//                mapToScreen(0)
-//                DRAW_POINT(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
-//                continue;
-//            }
+            if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * ta)) <= MIN_LEN_RATIO) {
+                getPoint(0)
+                mapToScreen(0)
+                DRAW_POINT(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
+                continue;
+            }
             getPoint(0)
             getPoint(1)
             getPoint(2)
@@ -51,10 +54,8 @@ void Berry3D::Camera::render() {
             DRAW_LINE(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y, transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y)
             DRAW_LINE(transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y, transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y)
             DRAW_LINE(transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y, transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
-
         }
         // 最后清理内存
         for (size_t i = 0; i < points.size(); i++) delete transedPoints[i];
     }
-    delete[] transedPoints;
 }
