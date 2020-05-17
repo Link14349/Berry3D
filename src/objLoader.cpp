@@ -51,7 +51,7 @@ Berry3D::Entity *Berry3D::ObjLoader::load() {
                     BERRY3D_OBJ_LOAD_FACE_GET(b)
                     BERRY3D_OBJ_LOAD_FACE_GET(c)
                     nId--, aId--, bId--, cId--;
-                    entity->planes.push_back(new Entity::PlaneEle(new Vector3(*ns[nId]), aId, bId, cId));
+                    entity->planes.push_back(new Entity::PlaneEle(new Vector3(*ns[nId]), aId, bId, cId, (ns[nId]->x + 1) * 0.5, (ns[nId]->y + 1) * 0.5, (ns[nId]->z + 1) * 0.5));
                 }
                 break;
         }

@@ -1,12 +1,15 @@
 #include <cmath>
 #include "../include/scene.h"
 #include "../include/camera.h"
+#include "../include/draws.h"
+#include "../include/shader.h"
 
 void Berry3D::Camera::render() {
 #define NEAR_Z 0.1
 #define FAR_Z 1000
     const float SIZE = scene->berry3D->width();
-    float height_width = scene->berry3D->height() / scene->berry3D->width();
+    const float height_width = scene->berry3D->height() / scene->berry3D->width();
+    const float invHeight = 1 / scene->berry3D->height();
     auto ta = scene->ta;
     auto tb = scene->tb;
     auto half_alpha = scene->half_alpha;
@@ -52,9 +55,17 @@ void Berry3D::Camera::render() {
             mapToScreen(0)
             mapToScreen(1)
             mapToScreen(2)
-            DRAW_LINE(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y, transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y)
-            DRAW_LINE(transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y, transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y)
-            DRAW_LINE(transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y, transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
+            glColor3f(plane->color[0], plane->color[1], plane->color[2]);
+            renderTr(
+                    transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y,
+                    transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y,
+                    transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y,
+                    invHeight
+                    );
+//            glColor3f(1, 0, 0);
+//            DRAW_LINE(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y, transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y)
+//            DRAW_LINE(transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y, transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y)
+//            DRAW_LINE(transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y, transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
         }
         // 最后清理内存
         for (size_t i = 0; i < points.size(); i++) delete transedPoints[i];

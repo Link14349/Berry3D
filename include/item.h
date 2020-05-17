@@ -67,14 +67,18 @@ namespace Berry3D {
         Entity(float maxRadius) : maxRadius(maxRadius) {}
         // 这里的指针全部只能使用new分配，delete销毁
         struct PlaneEle {
-            PlaneEle(Vector3* n, size_t i0, size_t i1, size_t i2)
+            PlaneEle(Vector3* n, size_t i0, size_t i1, size_t i2, float c0 = 1, float c1 = 1, float c2 = 1)
                     : n(n) {
                 points[0] = i0;
                 points[1] = i1;
                 points[2] = i2;
+                color[0] = c0;
+                color[1] = c1;
+                color[2] = c2;
             }
             ~PlaneEle() { delete n; }
             Vector3* n;
+            float color[3];
             size_t points[3];
         };
         float maxRadius;

@@ -60,11 +60,11 @@ int main() {
 //    for (int i = 0; i < LEN; i++)
 //        for (int j = 0; j < LEN; j++)
 //            for (int k = 0; k < LEN; k++) {
-//                auto cube = new Berry3D::Cube;
-//                cube->position.x = i * 2 - LEN;
-//                cube->position.y = j * 2 - LEN;
-//                cube->position.z = k * 2 - LEN;
-//                scene.push(cube);
+//                auto plane = new Berry3D::Plane;
+//                plane->position.x = i * 2 - LEN;
+//                plane->position.y = j * 2 - LEN;
+//                plane->position.z = k * 2 - LEN;
+//                scene.push(plane);
 //            }
     berry3D.render();
     scene.autoClear();

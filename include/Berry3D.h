@@ -26,13 +26,6 @@ namespace Berry3D {
         void setKeyEvent(void (*cb)(GLFWwindow*, int, int, int, int)) { glfwSetKeyCallback(win, cb); }
         void setAfterRendering(void (*ar)(Scene*)) { afterRendering = ar; }
         void use(Scene* s);
-#define DRAW_LINE(fx, fy, tx ,ty) glBegin(GL_LINES); \
-        glVertex2f(fx, fy); \
-        glVertex2f(tx, ty); \
-        glEnd();
-#define DRAW_POINT(fx, fy) glBegin(GL_POINTS); \
-        glVertex2f(fx, fy); \
-        glEnd();
     private:
         int w, h;
         GLFWwindow* win;
@@ -48,5 +41,6 @@ namespace Berry3D {
 #include "item.h"
 #include "camera.h"
 #include "cube.h"
+#include "plane.h"
 #include "loader.h"
 #include "objLoader.h"

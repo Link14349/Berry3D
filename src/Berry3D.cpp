@@ -2,6 +2,7 @@
 #include "../include/Berry3D.h"
 #include "../include/timestamp.h"
 #include "../include/scene.h"
+#include "../include/shader.h"
 
 int Berry3D::Berry3D::render() {
     glfwMakeContextCurrent(win);
