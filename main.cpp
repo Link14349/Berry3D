@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <xmmintrin.h>
 #include "include/Berry3D.h"
 
 Berry3D::Berry3D berry3D("Berry3D");
@@ -51,22 +50,22 @@ int main() {
 //    camera.position.x = 4;
 //    camera.position.y = 0.623607;
 //    camera.position.z = -6.00845;
-//    Berry3D::ObjLoader objLoader("link.obj");
-//    auto obj = objLoader.load();
-//    obj->rotate(Berry3D::Vector3(0, PI, 0));
-//    obj->position.z = obj->radius();
-//    obj->position.y = -obj->radius() * 0.5;
-//    scene.push(obj);
-    camera.position.z = -2 * LEN;
-    for (int i = 0; i < LEN; i++)
-        for (int j = 0; j < LEN; j++)
-            for (int k = 0; k < LEN; k++) {
-                auto cube = new Berry3D::Cube;
-                cube->position.x = i * 2 - LEN;
-                cube->position.y = j * 2 - LEN;
-                cube->position.z = k * 2 - LEN;
-                scene.push(cube);
-            }
+    Berry3D::ObjLoader objLoader("link.obj");
+    auto obj = objLoader.load();
+    obj->rotate(Berry3D::Vector3(0, PI, 0));
+    obj->position.z = obj->radius();
+    obj->position.y = -obj->radius() * 0.5;
+    scene.push(obj);
+//    camera.position.z = -2 * LEN;
+//    for (int i = 0; i < LEN; i++)
+//        for (int j = 0; j < LEN; j++)
+//            for (int k = 0; k < LEN; k++) {
+//                auto cube = new Berry3D::Cube;
+//                cube->position.x = i * 2 - LEN;
+//                cube->position.y = j * 2 - LEN;
+//                cube->position.z = k * 2 - LEN;
+//                scene.push(cube);
+//            }
     berry3D.render();
     scene.autoClear();
     return 0;

@@ -6,6 +6,7 @@ void Berry3D::Camera::render() {
 #define NEAR_Z 0.1
 #define FAR_Z 1000
     const float SIZE = scene->berry3D->width();
+    float height_width = scene->berry3D->height() / scene->berry3D->width();
     auto ta = scene->ta;
     auto tb = scene->tb;
     auto half_alpha = scene->half_alpha;
@@ -38,7 +39,7 @@ void Berry3D::Camera::render() {
         for (auto& plane : planes) {
             if (plane->n->operator*(position - *points[plane->points[0]] - item->position) < 0) continue;
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *points[plane->points[ID]], item->position)
-#define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; transedPoints[plane->points[ID]]->mappingTo(ta, tb); }
+#define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; transedPoints[plane->points[ID]]->mappingTo(ta, tb, height_width); }
             if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * ta)) <= MIN_LEN_RATIO) {
                 getPoint(0)
                 mapToScreen(0)

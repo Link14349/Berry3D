@@ -6,6 +6,7 @@
 int Berry3D::Berry3D::render() {
     glfwMakeContextCurrent(win);
     while(!glfwWindowShouldClose(win)){
+        glfwGetWindowSize(win, &w, &h);
         glClearColor (0.0, 0.0, 0.0, 0.0);
         glClear (GL_COLOR_BUFFER_BIT);
         glLineWidth(1);//设置线段宽度

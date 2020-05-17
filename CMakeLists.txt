@@ -15,4 +15,4 @@ include_directories(${HEADERS})
 
 link_libraries(${GLFW_LINK} ${FRAMEWORKS_1} ${FRAMEWORKS_2} ${FRAMEWORKS_3} ${FRAMEWORKS_4} ${FRAMEWORKS_5})
 
-add_executable(Berry3D main.cpp src/math.cpp include/math.h src/Berry3D.cpp include/Berry3D.h src/camera.cpp include/camera.h src/scene.cpp include/scene.h src/item.cpp include/item.h include/cube.h include/timestamp.h src/loader.cpp include/loader.h src/objLoader.cpp include/objLoader.h)
+add_executable(Berry3D main.cpp src/math.cpp include/math.h src/Berry3D.cpp include/Berry3D.h src/camera.cpp include/camera.h src/scene.cpp include/scene.h src/item.cpp include/item.h include/cube.h include/timestamp.h src/loader.cpp include/loader.h src/objLoader.cpp include/objLoader.h src/shader.cpp include/shader.h)
