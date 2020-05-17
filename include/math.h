@@ -47,7 +47,7 @@ namespace Berry3D {
             return MATH_VEC_OP(x, *) + MATH_VEC_OP(y, *) + MATH_VEC_OP(z, *);
         }
         // 向量积
-        Vector3 operator%(const Vector3& vector3) const { return Vector3(MATH_VEC_OP(x, *), MATH_VEC_OP(y, *), MATH_VEC_OP(y, *)); }
+        Vector3 operator%(const Vector3& vector3) const { return Vector3(MATH_VEC_OP(x, *), MATH_VEC_OP(y, *), MATH_VEC_OP(z, *)); }
         Vector3& operator%=(const Vector3& vector3) {
             MATH_VEC_OP(x, *=);
             MATH_VEC_OP(y, *=);
@@ -67,6 +67,7 @@ namespace Berry3D {
             auto invLen = 1 / mod();
             return Vector3(x * invLen, y * invLen, z * invLen);
         }
+        void setAllZero() { x = y = z = 0; }
         void mappingTo(float ta, float tb, float height_width = 1) {
             x /= z * ta;
             y /= z * tb * height_width;

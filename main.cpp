@@ -43,6 +43,8 @@ int main() {
     scene.use(&camera);
     berry3D.use(&scene);
     berry3D.setKeyEvent(callback);
+    scene.setAmbientLight(Berry3D::Color(0, 1, 0));
+    scene.addLight(new Berry3D::Light(Berry3D::Color(0, 2, 0), Berry3D::Vector3(0, 10, -10)));
 #define LEN 1
 //    camera.rotation.x = -0.174533;
 //    camera.rotation.y = 0;

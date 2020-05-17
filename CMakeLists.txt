@@ -16,4 +16,4 @@ aux_source_directory(Berry3D src)
 
 link_libraries(${GLFW_LINK} ${FRAMEWORKS_1} ${FRAMEWORKS_2} ${FRAMEWORKS_3} ${FRAMEWORKS_4} ${FRAMEWORKS_5})
 
-add_executable(Berry3D main.cpp src/math.cpp include/math.h src/Berry3D.cpp include/Berry3D.h src/camera.cpp include/camera.h src/scene.cpp include/scene.h src/item.cpp include/item.h include/cube.h include/timestamp.h src/loader.cpp include/loader.h src/objLoader.cpp include/objLoader.h include/shader.h include/draws.h include/plane.h)
+add_executable(Berry3D main.cpp src/math.cpp include/math.h src/Berry3D.cpp include/Berry3D.h src/camera.cpp include/camera.h src/scene.cpp include/scene.h src/item.cpp include/item.h include/cube.h include/timestamp.h src/loader.cpp include/loader.h src/objLoader.cpp include/objLoader.h include/shader.h include/draws.h include/plane.h src/material.cpp include/material.h src/BMPLoader.cpp include/BMPLoader.h src/imageLoader.cpp include/imageLoader.h include/color.h src/Bitmap.cpp include/Bitmap.h src/lights.cpp include/lights.h)

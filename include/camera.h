@@ -4,6 +4,7 @@
 #include "item.h"
 
 namespace Berry3D {
+#define AMIBIENT 0.3
     class Scene;
     class Camera : public Item {
         friend class Scene;

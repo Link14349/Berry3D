@@ -7,6 +7,8 @@
 #include "item.h"
 #include "math.h"
 #include "camera.h"
+#include "color.h"
+#include "lights.h"
 
 namespace Berry3D {
     class Berry3D;
@@ -22,13 +24,18 @@ namespace Berry3D {
         void push(Entity* item) { items.push_back(item); }
         void autoClear() {
             for (auto& entity : items) delete entity;
+            for (auto& light : lights) delete light;
         }
+        void addLight(Light* light) { lights.push_back(light); }
+        void setAmbientLight(const Color& color) { ambientLightColor.vec = color.vec; }
         std::list<Entity*> items;
     private:
         float ta, tb;
         float half_alpha, half_beta;
         Camera* camera;
         Berry3D* berry3D;
+        Color ambientLightColor;
+        std::list<Light*> lights;
     };
 }
 

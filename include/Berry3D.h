@@ -10,7 +10,7 @@ namespace Berry3D {
     class Scene;
     class Berry3D {
     public:
-        Berry3D(const std::string& title, int w = 400, int h = 400) : scene(nullptr), win(nullptr), title(title), w(w), h(h) {
+        Berry3D(const std::string& title, int w = 800, int h = 800) : scene(nullptr), win(nullptr), title(title), w(w), h(h) {
             if(!glfwInit())
                 exit(-1);
             win = glfwCreateWindow(w, h, title.c_str(), NULL, NULL);

@@ -49,13 +49,47 @@ void Berry3D::Camera::render() {
                 DRAW_POINT(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)
                 continue;
             }
+            // 转换相机坐标
             getPoint(0)
             getPoint(1)
             getPoint(2)
+            // 光照计算
+            auto material = plane->material;
+            // 环境光计算
+            auto lightVal = scene->ambientLightColor.vec % material->ra.vec;
+            // 漫反射光计算
+            Vector3 tmp;
+            for (auto light : scene->lights) {
+                tmp += light->color.vec * plane->n->operator*((light->position - item->position).norm());
+            }
+            tmp %= material->rd.vec;
+            lightVal += tmp;
+            // 镜面反射光计算
+            tmp.setAllZero();
+            // 计算观察向量
+            auto v = transedPoints[plane->points[0]];
+            v->inverse();// 这里改变了点的坐标，做完运算后还要改回来
+            // 求和
+            for (auto light : scene->lights) {
+                auto l = (light->position - item->position).norm();
+                if (plane->n->operator*(l) < 0) continue;
+                l.x *= -1;
+                l.z *= -1;
+                auto r_v = v->operator*(l);
+                if (r_v <= 0) continue;
+                tmp += light->color.vec * std::pow(r_v, material->power);
+            }
+            tmp %= material->rs.vec;
+            lightVal += tmp;
+            // 完成计算
+            v->inverse();// 将点的坐标恢复回去
+            // 转换屏幕坐标
             mapToScreen(0)
             mapToScreen(1)
             mapToScreen(2)
-            glColor3f(plane->color[0], plane->color[1], plane->color[2]);
+            // 渲染
+            Vector3 c = lightVal % material->color.vec + material->color.vec * AMIBIENT;// 各种光照合成后的表面颜色
+            glColor3f(c.x, c.y, c.z);
             renderTr(
                     transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y,
                     transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y,
