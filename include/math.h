@@ -21,6 +21,12 @@ namespace Berry3D {
         Vector3(float a = 0, float b = 0, float c = 0) : x(a), y(b), z(c) { }
         Vector3(float a, float b, float c, const Vector3& vec) : x(a), y(b), z(c) { self_rotate(vec); }
         Vector3(const Vector3& vector3) : x(vector3.x), y(vector3.y), z(vector3.z) { }
+        Vector3& operator=(const Vector3& vector3) {
+            x = vector3.x;
+            y = vector3.y;
+            z = vector3.z;
+            return *this;
+        }
 #define MATH_VEC_OP(NAME, OP) NAME OP vector3.NAME
         Vector3 operator+(const Vector3& vector3) const { return Vector3(x + vector3.x, y + vector3.y, z + vector3.z);}
         Vector3& operator+=(const Vector3& vector3) {

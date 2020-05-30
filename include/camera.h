@@ -19,6 +19,7 @@ namespace Berry3D {
         Scene* scene;
         size_t transedPointsSize = 0;
         Vector3** transedPoints = nullptr;
+        Vector3* camPoints = nullptr;
     };
     class FreeCamera : public Camera {
         friend class Scene;

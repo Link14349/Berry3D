@@ -37,13 +37,15 @@ void Berry3D::Camera::render() {
             continue;
         if (transedPointsSize < points.size()) {
             delete[] transedPoints;
+            delete[] camPoints;
             transedPoints = new Vector3*[transedPointsSize = points.size()];
+            camPoints = new Vector3[transedPointsSize];
         }
         for (size_t i = 0; i < points.size(); i++) transedPoints[i] = nullptr;
         for (auto& plane : planes) {
             if (plane->n->operator*(position - *points[plane->points[0]] - item->position) < 0) continue;
 #define getPoint(ID) if (!transedPoints[plane->points[ID]]) transToCamPosition(transedPoints[plane->points[ID]], *points[plane->points[ID]], item->position)
-#define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; transedPoints[plane->points[ID]]->mappingTo(ta, tb, height_width); }
+#define mapToScreen(ID) if (transedPoints[plane->points[ID]]->z != INFINITY) { if (transedPoints[plane->points[ID]]->z < NEAR_Z) continue; camPoints[plane->points[ID]] = *transedPoints[plane->points[ID]]; transedPoints[plane->points[ID]]->mappingTo(ta, tb, height_width); }
             if (abs(points[plane->points[0]]->operator-(*points[plane->points[1]]).mod() * 0.5 / (points[plane->points[0]]->z * ta)) <= MIN_LEN_RATIO) {
                 getPoint(0)
                 mapToScreen(0)
@@ -61,15 +63,17 @@ void Berry3D::Camera::render() {
             // 漫反射光&镜面反射计算
             // 计算观察向量
             auto v = transedPoints[plane->points[0]];
+            if (isinf(v->z))
+                v = camPoints + plane->points[0];
             v->inverse();// 这里改变了点的坐标，做完运算后还要改回来
             Vector3 tmp1;
             Vector3 tmp2;
             for (auto light : scene->lights) {
                 auto l = (light->position - item->position).norm();
+                if (plane->n->operator*(l) < 0) continue;
                 // 计算漫反射
                 tmp1 += light->color.vec * plane->n->operator*(l);
                 // 计算镜面反射
-                if (plane->n->operator*(l) < 0) continue;
                 l.x *= -1;
                 l.z *= -1;
                 auto r_v = v->operator*(l);
@@ -88,7 +92,7 @@ void Berry3D::Camera::render() {
             mapToScreen(2)
             // 渲染
             Vector3 c = lightVal % material->color.vec + material->color.vec * AMIBIENT;// 各种光照合成后的表面颜色
-            glColor3f(c.x, c.y, c.z);
+            glColor3f(min(c.x, 1), min(c.y, 1), min(c.z, 1));
             renderTr(
                     transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y,
                     transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y,

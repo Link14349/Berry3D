@@ -40,8 +40,8 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
 }
 
 float theta = 0;
-auto la = new Berry3D::Light(Berry3D::Color(0, 5, 0), Berry3D::Vector3(10, 0, 0));
-auto lb = new Berry3D::Light(Berry3D::Color(0, 0, 5), Berry3D::Vector3(0, 10, 0));
+auto la = new Berry3D::Light(Berry3D::Color(0, 2, 0), Berry3D::Vector3(0, 10, 10));
+auto lb = new Berry3D::Light(Berry3D::Color(0, 0, 2), Berry3D::Vector3(0, 10, 0));
 Berry3D::Entity* obj;
 Berry3D::Entity* cube;
 
@@ -62,9 +62,9 @@ int main() {
     obj->position.y = -obj->radius() * 0.5;
     scene.push(obj);
     berry3D.render([]() {
-//        la->position.x = 10 * cos(theta);
-//        lb->position.y = 10 * cos(theta + PI);
-        obj->rotate(Berry3D::Vector3(0, PI / 90, 0));
+        la->position.x = 10 * cos(theta);
+        lb->position.y = 10 * cos(theta + PI);
+//        obj->rotate(Berry3D::Vector3(0, PI / 90, 0));
 //        cube->rotate(Berry3D::Vector3(PI / 90, PI / 90, PI / 90));
         theta += PI / 90;
     });
