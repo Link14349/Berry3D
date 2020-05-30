@@ -20,17 +20,15 @@ namespace Berry3D {
                 exit(-1);
             }
         }
-        int render();
+        int render(void(*)() = nullptr);
         float width() { return w; }
         float height() { return h; }
         void setKeyEvent(void (*cb)(GLFWwindow*, int, int, int, int)) { glfwSetKeyCallback(win, cb); }
-        void setAfterRendering(void (*ar)(Scene*)) { afterRendering = ar; }
         void use(Scene* s);
     private:
         int w, h;
         GLFWwindow* win;
         Scene* scene;
-        void (*afterRendering)(Scene*) = nullptr;
         std::string title;
     };
 }

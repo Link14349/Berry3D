@@ -147,6 +147,12 @@ namespace Berry3D {
         Vector3 n, p;
     };
     Vector3 intersParmlinePlane(const Parmline3D& parmline, const Plane3D& plane);
+    inline float max(float a, float b) {
+        return a > b ? a : b;
+    }
+    inline float min(float a, float b) {
+        return a > b ? b : a;
+    }
 }
 
 

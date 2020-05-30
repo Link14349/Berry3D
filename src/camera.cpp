@@ -3,6 +3,7 @@
 #include "../include/camera.h"
 #include "../include/draws.h"
 #include "../include/shader.h"
+#include "../include/math.h"
 
 void Berry3D::Camera::render() {
 #define NEAR_Z 0.1
@@ -57,30 +58,28 @@ void Berry3D::Camera::render() {
             auto material = plane->material;
             // 环境光计算
             auto lightVal = scene->ambientLightColor.vec % material->ra.vec;
-            // 漫反射光计算
-            Vector3 tmp;
-            for (auto light : scene->lights) {
-                tmp += light->color.vec * plane->n->operator*((light->position - item->position).norm());
-            }
-            tmp %= material->rd.vec;
-            lightVal += tmp;
-            // 镜面反射光计算
-            tmp.setAllZero();
+            // 漫反射光&镜面反射计算
             // 计算观察向量
             auto v = transedPoints[plane->points[0]];
             v->inverse();// 这里改变了点的坐标，做完运算后还要改回来
-            // 求和
+            Vector3 tmp1;
+            Vector3 tmp2;
             for (auto light : scene->lights) {
                 auto l = (light->position - item->position).norm();
+                // 计算漫反射
+                tmp1 += light->color.vec * plane->n->operator*(l);
+                // 计算镜面反射
                 if (plane->n->operator*(l) < 0) continue;
                 l.x *= -1;
                 l.z *= -1;
                 auto r_v = v->operator*(l);
-                if (r_v <= 0) continue;
-                tmp += light->color.vec * std::pow(r_v, material->power);
+                if (r_v <= 0 || isnan(r_v)) continue;
+                tmp2 += light->color.vec * std::pow(r_v, material->power);
             }
-            tmp %= material->rs.vec;
-            lightVal += tmp;
+            tmp1 %= material->rd.vec;
+            lightVal += tmp1;
+            tmp2 %= material->rs.vec;
+            lightVal += tmp2;
             // 完成计算
             v->inverse();// 将点的坐标恢复回去
             // 转换屏幕坐标
@@ -96,7 +95,7 @@ void Berry3D::Camera::render() {
                     transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y,
                     invHeight
                     );
-//            glColor3f(1, 0, 0);
+//            glColor3f(1, 1, 1);
 //            DRAW_LINE(transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y, transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y)
 //            DRAW_LINE(transedPoints[plane->points[1]]->x, transedPoints[plane->points[1]]->y, transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y)
 //            DRAW_LINE(transedPoints[plane->points[2]]->x, transedPoints[plane->points[2]]->y, transedPoints[plane->points[0]]->x, transedPoints[plane->points[0]]->y)

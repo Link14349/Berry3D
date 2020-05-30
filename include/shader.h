@@ -45,7 +45,7 @@ void Berry3D::renderTr(float x0, float y0, float x1, float y1, float x2, float y
         std::swap(y1, y2);
         std::swap(x1, x2);
     }
-    if (abs(y0 - y1) <= 0.001) {
+    if (abs(y0 - y1) <= 0.00001) {
         renderFlatTopTr(x2, y2, x0, y0, x1, invHeight);
         return;
     }

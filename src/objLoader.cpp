@@ -9,8 +9,10 @@ Berry3D::Entity *Berry3D::ObjLoader::load() {
     std::string mod;
     std::vector<Vector3*> ns;
     while (!file.eof()) {
+        mod[0] = '0';
         file >> mod;
         switch (mod[0]) {
+            case '0': goto END;
             default:
                 getline(file, mod);
                 break;
@@ -23,6 +25,7 @@ Berry3D::Entity *Berry3D::ObjLoader::load() {
                         ns.push_back(new Vector3(x, y, z));
                         break;
                     }
+                    case 't': break;
                     default:
                         float x, y, z;
                         file >> x >> y >> z;
@@ -57,6 +60,7 @@ Berry3D::Entity *Berry3D::ObjLoader::load() {
                 break;
         }
     }
+    END:
     for (auto& vec : ns) delete vec;
     entity->maxRadius = sqrt(maxRadius2);
     return entity;
