@@ -3,10 +3,15 @@
 
 #include <list>
 #include <vector>
+#include <string>
 #include "math.h"
 #include "material.h"
 
 namespace Berry3D {
+    struct BinContent {
+        char* content;
+        uint32_t len;
+    };
     class Item {
     public:
         Item() { }
@@ -63,6 +68,31 @@ namespace Berry3D {
         float radius() { return maxRadius; }
         void moveOrigin(const Vector3& offset) {
             for (auto& point : points) point->operator-=(offset);
+        }
+        static void u32Bin(uint32_t iv, char* str, uint32_t& idx) {
+            for (uint32_t i = 0xff, c = 0; c < 4; i <<= 8, c++) str[idx++] = (iv & i) >> (c << 3);
+        }
+        static void floatBin(float v, char* str, uint32_t& idx) {
+            u32Bin(*((uint32_t*)(&v)), str, idx);
+        }
+        void tobe4(BinContent& bc) {// 转为.be4 4d文件格式
+            char* content = new char[20 + points.size() * 12 + planes.size() * 24];// 18 + points.size() * 12 + planes.size() * 24个字符，算上\0就加一，再加上一位预防bug
+            uint32_t idx = 6;
+            content = strcpy(content, "be4f\x01\x03");// 1版本号00; 1文件类型3d模型; 4占位符，存planes存储地址; 8备用空间，暂无用处
+            u32Bin(18 + points.size() * 12, content, idx);
+            idx = 18;
+            for (auto point : points) {
+                floatBin(point->x, content, idx);
+                floatBin(point->y, content, idx);
+                floatBin(point->z, content, idx);
+            }
+            for (auto plane : planes) {
+                u32Bin(plane->points[0], content, idx);
+                u32Bin(plane->points[1], content, idx);
+                u32Bin(plane->points[2], content, idx);
+            }
+            bc.content = content;
+            bc.len = idx;
         }
     protected:
         Entity(float maxRadius) : maxRadius(maxRadius) {}

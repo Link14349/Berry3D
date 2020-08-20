@@ -60,6 +60,11 @@ int main() {
     obj->rotate(Berry3D::Vector3(0, PI, 0));
     obj->position.z = obj->radius();
     obj->position.y = -obj->radius() * 0.5;
+    Berry3D::BinContent bc{};
+    obj->tobe4(bc);
+    auto fp = fopen( "link.be4d" , "w" );
+    fwrite(bc.content, bc.len , 1, fp);
+    fclose(fp);
     scene.push(obj);
     berry3D.render([]() {
         la->position.x = 10 * cos(theta);
