@@ -78,7 +78,7 @@ namespace Berry3D {
         void tobe4(BinContent& bc) {// 转为.be4 4d文件格式
             char* content = new char[20 + points.size() * 12 + planes.size() * 24];// 18 + points.size() * 12 + planes.size() * 24个字符，算上\0就加一，再加上一位预防bug
             uint32_t idx = 6;
-            content = strcpy(content, "be4f\x01\x03");// 1版本号00; 1文件类型3d模型; 4占位符，存planes存储地址; 8备用空间，暂无用处
+            strcpy(content, "be4f\x01\x03");// 1版本号00; 1文件类型3d模型; 4占位符，存planes存储地址; 8备用空间，暂无用处
             u32Bin(18 + points.size() * 12, content, idx);
             idx = 18;
             for (auto point : points) {
