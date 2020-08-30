@@ -39,6 +39,7 @@ namespace Berry3D {
 #include "item.h"
 #include "camera.h"
 #include "cube.h"
+#include "cylinder.h"
 #include "plane.h"
 #include "loader.h"
 #include "objLoader.h"

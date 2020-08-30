@@ -42,8 +42,6 @@ static void callback(GLFWwindow* win, int key, int scancode, int action, int mod
 float theta = 0;
 auto la = new Berry3D::Light(Berry3D::Color(0, 2, 0), Berry3D::Vector3(0, 10, 10));
 auto lb = new Berry3D::Light(Berry3D::Color(0, 0, 2), Berry3D::Vector3(0, 10, 0));
-Berry3D::Entity* obj;
-Berry3D::Entity* cube;
 
 int main() {
     scene.use(&camera);
@@ -52,25 +50,19 @@ int main() {
     scene.setAmbientLight(Berry3D::Color(0, 1, 0));
     scene.addLight(la);
     scene.addLight(lb);
-#define LEN 1
-    cube = new Berry3D::Cube;
-//    scene.push(cube);
-    Berry3D::ObjLoader objLoader("link.obj");
-    obj = objLoader.load();
-    obj->rotate(Berry3D::Vector3(0, PI, 0));
-    obj->position.z = obj->radius();
-    obj->position.y = -obj->radius() * 0.5;
+    Berry3D::ObjLoader objLoader("torus.obj");
+    auto obj = objLoader.load();
+    obj->scale(.01f);
+    obj->rotate(Berry3D::Vector3(0, 0, M_PI_2));
+    scene.push(obj);
     Berry3D::BinContent bc{};
     obj->tobe4(bc);
-    auto fp = fopen( "link.be4d" , "w" );
+    auto fp = fopen( "ring.be4d" , "w" );
     fwrite(bc.content, bc.len , 1, fp);
     fclose(fp);
-    scene.push(obj);
     berry3D.render([]() {
         la->position.x = 10 * cos(theta);
         lb->position.y = 10 * cos(theta + PI);
-//        obj->rotate(Berry3D::Vector3(0, PI / 90, 0));
-//        cube->rotate(Berry3D::Vector3(PI / 90, PI / 90, PI / 90));
         theta += PI / 90;
     });
     scene.autoClear();

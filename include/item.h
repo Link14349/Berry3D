@@ -11,6 +11,7 @@ namespace Berry3D {
     struct BinContent {
         char* content;
         uint32_t len;
+        ~BinContent() { delete[] content; }
     };
     class Item {
     public:
